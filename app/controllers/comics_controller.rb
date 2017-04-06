@@ -39,10 +39,22 @@ class ComicsController < ApplicationController
     @comicCreators = array.uniq
 
     temp = "comicImages/#{@comic.image_name}.jpg"
-    @imageName = temp.gsub(/\s+/, "")
+    temp = temp.gsub(/\s+/, "")
+    temp = temp.gsub '[', ''
+    temp = temp.gsub ']', ''
+    temp = temp.gsub '...', ''
+    temp = temp.gsub '?', ''
+    @imageName = temp
+
+
 
     temp = "comicImages/#{@comic.image_name}_thumb.jpg"
-    @imageNameThumb = temp.gsub(/\s+/, "")
+    temp = temp.gsub(/\s+/, "")
+    temp = temp.gsub '[', ''
+    temp = temp.gsub ']', ''
+    temp = temp.gsub '...', ''
+    temp = temp.gsub '?', ''
+    @imageNameThumb = temp
 
     # make sure there's no spaces in the titles next time dumbass
   end

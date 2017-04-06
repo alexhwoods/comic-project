@@ -1,0 +1,34 @@
+<div class="comicsShow">
+  <!-- <h2>Show Comic</h2> -->
+  <div class="mainComicDescription">
+    <!-- note - it's better to resize all images in backend -->
+    <%= image_tag(@imageName, :size => '280x400', :class => "cover")%>
+
+    <h3 class="title"><%= @comic.title %></h3>
+    <h4 class="issueName"><%= @comic.issue_name %></h4>
+    <h4 class="issueNum"><%= "Issue number: #{@comic.issue_num}" %></h4>
+    <h4 class="year"><%= "Year: #{@comic.year}" %></h4>
+
+    <!-- make an unordered list of the characters -->
+    <div class="characters">
+        <h4> Characters </h4>
+        <ul>
+            <% @comicChars.each do |name| %>
+                <li><%= name %></li>
+            <% end %>
+        </ul>
+    </div>
+
+    <div class="creators">
+        <h4> Creators </h4>
+        <ul>
+            <% @comicCreators.each do |name| %>
+                <li><%= name %></li>
+            <% end %>
+        </ul>
+    </div>
+
+  
+  </div>
+</div>
+

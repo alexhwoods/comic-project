@@ -1,0 +1,35 @@
+<!-- this is here so we can easily grab it from CSS -->
+<div class="comics index">
+  <h2>Comics</h2>
+
+  <%= link_to("Add New Comic", '#', :class => 'action new') %>
+
+  <table class="listing" summary="Comic list">
+    <!-- this is a table -->
+    <tr class="header">
+      <th>#</th>
+      <th>Title</th>
+      <th>Issue Name</th>
+      <th>Issue Number</th>
+      <th>Year</th>
+      <th>Actions</th>
+    </tr>
+    <!-- now for the meat of the table -->
+    <% @Comics.each do |comic| %>
+    <tr>
+      <td><%= comic.id %></td>
+      <td><%= comic.title %></td>
+      <td><%= comic.issue_name %></td>
+      <td><%= comic.issue_num %></td>
+      <td><%= comic.year %></td>
+      <td class="actions">
+        <%= link_to("Show", comic_path(comic), :class => 'action show') %>
+        <%= link_to("Edit", '#', :class => 'action edit') %>
+        <%= link_to("Delete", '#', :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<!-- Comic id: nil, title: nil, issue_name: nil, issue_num: nil, year: nil, story_arc: nil, graphic_novel: false, imprint: nil, publisher_id: nil, created_at: nil, updated_at: nil, description: nil, image_name: nil -->

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reactor Comics</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+
+    <div class="nav">
+      <ul>
+        <li class="logo"><a href="#"i>Logo Here</a></li>
+        <!-- <li class="home"><a href=<%= comics_index_path %>>Home</a></li> -->
+        <li class"home"><%= link_to("Home", comics_index_path) %></li>
+        <li class="tutorials"><a href="#">My Comics</a></li>
+        <li class="about"><a href="#">My Characters</a></li>
+        <li class="news"><a href="#">Browse</a></li>
+        <li class="search">
+          <form id="search-form">
+            <div class="search">
+              <input type="text" name="search" placeholder="Search" class="round" />
+            </div>
+          </form>
+        </li>
+      </ul>
+
+      <!-- fixme - notifications icon should go here -->
+      <!-- fixme - user icon should go here -->
+    </div>
+
+
+</head>
+
+<body>
+
+<%= yield %>
+
+</body>
+</html>

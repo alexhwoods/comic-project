@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<div class="characterInfo">
+    <!-- make an image attribute in pages table, with simply the name -->
+    <!-- note - this is the regular expression to remove all square brackets and their contents 
+                            \[(.*?)\] 
+    -->
+    <% if !@page.image_name.nil? %>
+    <%= image_tag("characterImages/#{@page.image_name}.jpg", :size => "#{@page.image_size}", :class => "photo")%>
+    <% end %>
+    
+    <%= raw @page.page %>
+
+</div>

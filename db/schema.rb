@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405160557) do
+ActiveRecord::Schema.define(version: 20170411165045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,16 +67,29 @@ ActiveRecord::Schema.define(version: 20170405160557) do
   end
 
   create_table "meta_characters", force: :cascade do |t|
-    t.string "name"
-    t.string "publisher_id"
-    t.string "page_name"
+    t.string  "name"
+    t.string  "publisher_id"
+    t.string  "page_name"
+    t.integer "parent_mc_id"
   end
 
   add_index "meta_characters", ["name", "publisher_id"], name: "no_duplicates_mc", unique: true, using: :btree
 
+  create_table "pages", force: :cascade do |t|
+    t.integer "meta_character_id"
+    t.text    "page"
+    t.string  "image_name"
+    t.string  "image_size"
+  end
+
   create_table "publishers", primary_key: "name", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email",    limit: 80, null: false
+    t.string "password", limit: 80
   end
 
 end

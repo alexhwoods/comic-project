@@ -19,14 +19,15 @@ class ComicsController < ApplicationController
         array.push(meta.name)
         str = meta.name
 
-        str2 = (x.first_name || "") + (x.last_name || "")
-        str2 = str2.gsub("null", "")
+        str2 = (x.first_name || "")
+        str3 = str2 + " " + (x.last_name || "")
+        str3 = str3.gsub("null", "")
 
-        if not str2.empty?
-            str2 = " - " + str2
+        if not x.last_name.empty?
+            str3 = " - " + str3
         end 
 
-        str = str + str2
+        str = str + str3
         h[str] = meta.id
 
     end
@@ -55,6 +56,9 @@ class ComicsController < ApplicationController
     temp = temp.gsub '...', ''
     temp = temp.gsub '?', ''
     @imageNameThumb = temp
+
+
+    # I want to be able to go straight to the meta character's page through here
 
     # make sure there's no spaces in the titles next time dumbass
   end

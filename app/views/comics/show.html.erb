@@ -14,7 +14,11 @@
         <h4> Characters </h4>
         <ul>
             <% @comicChars.each do |name| %>
-                <li><%= name %></li>
+                <!-- this should be done in the controller, but I'm struggling rn -->
+                <% @metaChar = MetaCharacter.find(@comicCharsHash[name]) %>
+                <li><%= link_to(name, meta_character_path(@metaChar.id)) %></li>
+                <!--  -->
+
             <% end %>
         </ul>
     </div>
@@ -24,11 +28,11 @@
         <ul>
             <% @comicCreators.each do |name| %>
                 <li><%= name %></li>
+
             <% end %>
         </ul>
     </div>
 
-  
   </div>
 </div>
 

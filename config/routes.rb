@@ -2,11 +2,13 @@ Rails.application.routes.draw do
   get 'comics/index'
 
   get 'comics/show'
-  get 'characters/show'
+  get 'meta_characters/show' 
+
 
   get 'welcome/index'        # this can go
 
   resources :comics          # this defines all the resourceful routes 
+  resources :meta_characters
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

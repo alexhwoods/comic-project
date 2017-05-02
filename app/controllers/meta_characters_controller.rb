@@ -4,16 +4,17 @@ class MetaCharactersController < ApplicationController
 
     def show
         @metaChar = MetaCharacter.find(params[:id])
+        @page = @metaChar.page
 
-        if !@metaChar.page_name.nil?
-            # do stuff here
-            render template: "meta_characters/#{@metaChar.page_name}"
-        else
-            # render dummy page that says
-            # "this character does not have a page"
-            render template: "meta_characters/dummy_page"
+        if !@metaChar.parent_mc_id.nil?
+            @metaChar = MetaCharacter.find(@metaChar.parent_mc_id)
+            @page = @metaChar.page
         end
-        
+
+        if @page.nil?
+            # send to a dummy page!
+            @page = Page.new(:page => '<h1> This character has no page, sorry! </h1>')
+        end
     end
 
 

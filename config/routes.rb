@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   get 'comics/index'
 
   get 'comics/show'
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'welcome/index'        # this can go
 
+  resources :users           # same for users...
   resources :comics          # this defines all the resourceful routes 
   resources :meta_characters
   root 'welcome#index'

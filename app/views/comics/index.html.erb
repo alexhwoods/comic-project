@@ -1,4 +1,4 @@
-<!-- this is here so we can easily grab it from CSS -->
+<!-- this is here so we can easily grab it from CSS --> 
 <div class="comics index">
   <h2>Comics</h2>
 
@@ -19,7 +19,14 @@
     <tr>
       <td><%= comic.id %></td>
       <td><%= comic.title %></td>
-      <td><%= comic.issue_name %></td>
+
+      <!-- issue name needs to be displayed as blank, not null! -->
+      <% if comic.issue_name == "null" %>
+       <td> </td>
+      <% else %>
+       <td><%= comic.issue_name %></td>
+      <% end %>
+
       <td><%= comic.issue_num %></td>
       <td><%= comic.year %></td>
       <td class="actions">
@@ -32,4 +39,4 @@
   </table>
 </div>
 
-<!-- Comic id: nil, title: nil, issue_name: nil, issue_num: nil, year: nil, story_arc: nil, graphic_novel: false, imprint: nil, publisher_id: nil, created_at: nil, updated_at: nil, description: nil, image_name: nil -->
+<!-- Comic id: nil, title: nil, issue_name: nil, issue_num: nil, year: nil, story_arc: nil, graphic_novel: false, imprint: nil, publisher_id: nil, created_at: nil, updated_at: nil, description: nil, image_name: nil

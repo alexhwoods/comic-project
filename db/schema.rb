@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411165045) do
+ActiveRecord::Schema.define(version: 20170507153509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,18 +34,19 @@ ActiveRecord::Schema.define(version: 20170411165045) do
   add_index "characters_comics", ["comic_id", "character_id"], name: "index_characters_comics_on_comic_id_and_character_id", using: :btree
 
   create_table "comics", force: :cascade do |t|
-    t.string   "title",         limit: 255,                 null: false
-    t.string   "issue_name",    limit: 255
+    t.string   "title",             limit: 255,                 null: false
+    t.string   "issue_name",        limit: 255
     t.integer  "issue_num"
-    t.integer  "year",                                      null: false
-    t.string   "story_arc",     limit: 100
-    t.boolean  "graphic_novel",             default: false
-    t.string   "imprint",       limit: 40
+    t.integer  "year",                                          null: false
+    t.string   "story_arc",         limit: 100
+    t.boolean  "graphic_novel",                 default: false
+    t.string   "imprint",           limit: 40
     t.string   "publisher_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.string   "description"
     t.string   "image_name"
+    t.integer  "main_character_id"
   end
 
   add_index "comics", ["title", "issue_name", "issue_num", "year"], name: "no_duplicates1", unique: true, using: :btree

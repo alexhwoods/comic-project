@@ -6,20 +6,23 @@
    <%= stylesheet_link_tag    'application', media: 'all'%>
    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
    <%= csrf_meta_tags %>
+
+  <nav class="navbar navbar-inverse bg-primary navbar-toggleable-sm" style="margin-bottom: 15px">
+    <div class="container">
+      <a class="navbar-brand" href="#">Logo</a>
+      <div class="navbar-nav">
+        <%= link_to "Home", comics_index_path, :class => "nav-link active" %>
+        <a class="nav-item nav-link" href="#">My Comics</a>
+        <a class="nav-item nav-link" href="#">My Characters</a>
+        <a class="nav-item nav-link" href="#">Browse</a>
+      </div> <!-- navbar-nav -->
+    </div> <!--container -->
+  </nav>
+
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse bg-primary navbar-toggleable-sm">
-      <div class="container">
-        <a class="navbar-brand" href="#">Logo</a>
-        <div class="navbar-nav">
-          <%= link_to "Home", comics_index_path, :class => "nav-link active" %>
-          <a class="nav-item nav-link" href="#">My Comics</a>
-          <a class="nav-item nav-link" href="#">My Characters</a>
-          <a class="nav-item nav-link" href="#">Browse</a>
-        </div> <!-- navbar-nav -->
-      </div> <!--container -->
-  </nav>
+
 
 
 <%= yield %>

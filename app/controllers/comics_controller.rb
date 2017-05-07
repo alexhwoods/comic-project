@@ -19,15 +19,18 @@ class ComicsController < ApplicationController
         array.push(meta.name)
         str = meta.name
 
+        # this should get the character's name (not the meta character's name!)
         str2 = (x.first_name || "")
         str3 = str2 + " " + (x.last_name || "")
-        str3 = str3.gsub("null", "")
+        charName = str3.gsub("null", "")
 
-        if not x.last_name.empty?
-            str3 = " - " + str3
+
+        # fixme - this should go from meta character name to character name no?
+        if not charName.empty? and charName != " "
+            charName = " - " + charName
         end 
 
-        str = str + str3
+        str = str + charName
         h[str] = meta.id
 
     end

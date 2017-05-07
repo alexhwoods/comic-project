@@ -1,38 +1,72 @@
-<div class="comicsShow">
-  <!-- <h2>Show Comic</h2> -->
-  <div class="mainComicDescription">
+<div class="container" id="outerContainer">
+
+  <div class="row" style="margin-bottom: 15px"> <!-- row 1! -->
     <!-- note - it's better to resize all images in backend -->
-    <%= image_tag(@imageName, :size => '280x400', :class => "cover")%>
+    <!-- note - images should already be at this size so loading time is lessened -->
 
-    <h3 class="title"><%= @comic.title %></h3>
-    <h4 class="issueName"><%= @comic.issue_name %></h4>
-    <h4 class="issueNum"><%= "Issue number: #{@comic.issue_num}" %></h4>
-    <h4 class="year"><%= "Year: #{@comic.year}" %></h4>
+    <section class="col-sm-3" >  <!-- take up 3/12 -->
+        <!-- this CSS needs to be in an external file...for some reason it's not listening though -->
+        <%= image_tag @imageName, :size => '151x217' %>
+    </section>
+    <section class="col-md-6">   <!-- take up 6/12 -->
+        <h3 class="title"><%= @comic.title %></h3>
+        <h4 class="issueName"><%= @comic.issue_name %></h4>
+        <h4 class="issueNum"><%= "Issue number: #{@comic.issue_num}" %></h4>
+        <h4 class="year"><%= "Year: #{@comic.year}" %></h4>
+        <p>
 
-    <!-- make an unordered list of the characters -->
-    <div class="characters">
+            Description will go here. 
+
+            TODO - make sure you can handle long descriptions, with an appropriate "more" button!
+
+        </p>
+    </section>
+    <section class="col-sm-3"> <!-- take up 3/12 -->
+        <!-- ads will go here! -->
+    </section>
+  </div> <!-- row 1 -->
+
+  <div class="row" style="margin-bottom: 20px"> <!-- row 2 -->
+  <!-- row 2 will be in equal thirds! -->
+    <section class="col-sm-4" id="mainCharacterInfo">
+        <!-- TODO -->
+    </section>
+
+    <section class="col-sm-4" id="characters"> 
         <h4> Characters </h4>
-        <ul>
+        <!-- make an unordered list of the characters -->
+        <% if @comicChars.empty? %>
+         <p>There are no characters related to this comic.<br><br>
+            TODO - add a form that allows the users to add some.
+         </p>
+        <% else %>
+         <ul>
             <% @comicChars.each do |name| %>
                 <!-- this should be done in the controller, but I'm struggling rn -->
                 <% @metaChar = MetaCharacter.find(@comicCharsHash[name]) %>
                 <li><%= link_to(name, meta_character_path(@metaChar.id)) %></li>
-                <!--  -->
-
             <% end %>
-        </ul>
-    </div>
+          </ul>
+        <% end %>
+        
+    </section>
 
-    <div class="creators">
+    <section class="col-sm-4" id="creators">
         <h4> Creators </h4>
-        <ul>
-            <% @comicCreators.each do |name| %>
-                <li><%= name %></li>
+        <% if @comicCreators.empty? %>
+         <p>There are no creators related to this comic.<br><br>
+            TODO - add a form that allows the users to add some.
+         </p>
+        <% else %>
+            <ul>
+                <% @comicCreators.each do |name| %>
+                    <li><%= name %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    </section>
+  </div><!-- row 2 -->
 
-            <% end %>
-        </ul>
-    </div>
 
-  </div>
-</div>
+</div><!-- outerContainer -->
 

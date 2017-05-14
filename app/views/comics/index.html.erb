@@ -1,42 +1,50 @@
 <!-- this is here so we can easily grab it from CSS --> 
-<div class="comics index">
-  <h2>Comics</h2>
 
-  <%= link_to("Add New Comic", '#', :class => 'action new') %>
 
-  <table class="listing" summary="Comic list">
-    <!-- this is a table -->
-    <tr class="header">
-      <th>#</th>
-      <th>Title</th>
-      <th>Issue Name</th>
-      <th>Issue Number</th>
-      <th>Year</th>
-      <th>Actions</th>
-    </tr>
-    <!-- now for the meat of the table -->
-    <% @Comics.each do |comic| %>
-    <tr>
-      <td><%= comic.id %></td>
-      <td><%= comic.title %></td>
 
-      <!-- issue name needs to be displayed as blank, not null! -->
-      <% if comic.issue_name == "null" %>
-       <td> </td>
-      <% else %>
-       <td><%= comic.issue_name %></td>
+<div class="container-fluid">
+    <div class="row">
+      <% @Comics.each do |comic| %>
+        <% if comic.image_name == "null" %>
+        <% else %>
+            <div class="image-block col-sm-4" style="background: url('<%= asset_path "comicImages/#{comic.image_name}.jpg" %>'); no-repeat center top;background-size:cover;">
+                  <%= link_to comic.id, comic_path(comic) %>
+            </div>
+        <% end %>
       <% end %>
-
-      <td><%= comic.issue_num %></td>
-      <td><%= comic.year %></td>
-      <td class="actions">
-        <%= link_to("Show", comic_path(comic), :class => 'action show') %>
-        <%= link_to("Edit", '#', :class => 'action edit') %>
-        <%= link_to("Delete", '#', :class => 'action delete') %>
-      </td>
-    </tr>
-    <% end %>
-  </table>
+      </div>
 </div>
+
+<style>
+.headermessage {
+  margin: 19px;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+.image-block {
+    border: 3px solid white ;
+    background-color: black;
+    padding: 0px;    
+    margin: 0px;
+    height:200px;
+    text-align: center;
+    vertical-align: bottom;
+}
+.image-block > p {
+    width: 100%;
+    height: 100%;
+    font-weight: normal;
+    font-size: 19px;
+    padding-top: 150px;
+    background-color: rgba(3,3,3,0.0);
+    color: rgba(6,6,6,0.0);
+}
+.image-block:hover > p {
+    background-color: rgba(3,3,3,0.5);    
+    color: white;    
+}
+</style>
 
 <!-- Comic id: nil, title: nil, issue_name: nil, issue_num: nil, year: nil, story_arc: nil, graphic_novel: false, imprint: nil, publisher_id: nil, created_at: nil, updated_at: nil, description: nil, image_name: nil

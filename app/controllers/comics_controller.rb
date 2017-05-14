@@ -1,7 +1,8 @@
 class ComicsController < ApplicationController
 
   def index
-    @Comics = Comic.all
+    # remove the limit if you want, but then it takes forever to load
+    @Comics = Comic.limit(30).all
   end
 
   def show
@@ -43,21 +44,11 @@ class ComicsController < ApplicationController
     @comicCreators = array.uniq
 
     temp = "comicImages/#{@comic.image_name}.jpg"
-    temp = temp.gsub(/\s+/, "")
-    temp = temp.gsub '[', ''
-    temp = temp.gsub ']', ''
-    temp = temp.gsub '...', ''
-    temp = temp.gsub '?', ''
     @imageName = temp
 
 
 
     temp = "comicImages/#{@comic.image_name}_thumb.jpg"
-    temp = temp.gsub(/\s+/, "")
-    temp = temp.gsub '[', ''
-    temp = temp.gsub ']', ''
-    temp = temp.gsub '...', ''
-    temp = temp.gsub '?', ''
     @imageNameThumb = temp
 
 
